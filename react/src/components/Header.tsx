@@ -16,7 +16,7 @@ const Header: React.FC = function() {
 						<span className="navbar-toggler-icon"></span>
 					</button>
 
-					<div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+					<div className="offcanvas offcanvas-end" tabIndex={-1} id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
 						<div className="offcanvas-header">
 							<h5 className="offcanvas-title" id="offcanvasNavbarLabel">Telzir</h5>
 							<button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
