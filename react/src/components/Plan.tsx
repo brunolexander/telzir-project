@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import IPlan from '../interfaces/IPlan'
 
 const Plan = (props: IPlan): JSX.Element => (
-	
+
     <div className="col-9 col-md-6 col-lg">
         <div className="card mb-3 py-4 plan">
             <div className="card-body">
@@ -22,22 +22,22 @@ const Plan = (props: IPlan): JSX.Element => (
 
                 <ul className="ps-0 mb-4 list-group align-items-center justify-content-center text-truncate">
                     <li className="list-group-item">
-                        <FontAwesomeIcon icon="fa-solid fa-circle-check" size="lg" className="text--style-1" fixedWidth />
+                        <FontAwesomeIcon icon="circle-check" size="lg" className="text--style-1" fixedWidth />
                         Lorem ipsum dolor sit amet
                     </li>
 
                     <li className="list-group-item">
-                        <FontAwesomeIcon icon="fa-solid fa-circle-check" size="lg" className="text--style-1" fixedWidth />
+                        <FontAwesomeIcon icon="circle-check" size="lg" className="text--style-1" fixedWidth />
                         Lorem ipsum dolor sit amet
                     </li>
 
                     <li className="list-group-item">
-                        <FontAwesomeIcon icon="fa-solid fa-circle-check" size="lg" className="text--style-1" fixedWidth />
+                        <FontAwesomeIcon icon="circle-check" size="lg" className="text--style-1" fixedWidth />
                         Lorem ipsum dolor sit amet
                     </li>
 
                     <li className="list-group-item">
-                        <FontAwesomeIcon icon="fa-solid fa-circle-check" size="lg" className="text--style-1" fixedWidth />
+                        <FontAwesomeIcon icon="circle-check" size="lg" className="text--style-1" fixedWidth />
                         Lorem ipsum dolor sit amet
                     </li>
                 </ul>

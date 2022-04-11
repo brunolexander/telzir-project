@@ -24,15 +24,15 @@ const Footer: React.FC = function() {
 
 								<ul className="list-unstyled">
 									<li className="mb-2 text-capitalize">
-										<FontAwesomeIcon icon="fa-solid fa-location-dot" className="me-2 icon--1" fixedWidth />
+										<FontAwesomeIcon icon="location-dot" className="me-2 icon--1" fixedWidth />
 										Lorem ipsum, 123 - adipisicing
 									</li>
 									<li className="mb-2 ">
-										<FontAwesomeIcon icon="fa-solid fa-envelope" className="me-2 icon--1" fixedWidth />
-										suporte@email.com<
-									/li>
+										<FontAwesomeIcon icon="envelope" className="me-2 icon--1" fixedWidth />
+										suporte@email.com
+									</li>
 									<li>
-										<FontAwesomeIcon icon="fa-solid fa-phone" className="me-2 icon--1" fixedWidth />
+										<FontAwesomeIcon icon="phone" className="me-2 icon--1" fixedWidth />
 										(99) 9999 9999
 									</li>
 								</ul>
@@ -43,23 +43,23 @@ const Footer: React.FC = function() {
 							<h5>Navegação</h5>
 							<ul className="list-unstyled">
 								<li className="mb-2">
-									<FontAwesomeIcon icon="fa-solid fa-chevron-right" className="fa-xs me-3" style={{ color: '#6C41FF' }} />
+									<FontAwesomeIcon icon="chevron-right" className="fa-xs me-3" style={{ color: '#6C41FF' }} />
 									<a href="#" className="footer-link">Home</a>
 								</li>
 								<li className="mb-2">
-									<FontAwesomeIcon icon="fa-solid fa-chevron-right" className="fa-xs me-3" style={{ color: '#6C41FF' }} />
+									<FontAwesomeIcon icon="chevron-right" className="fa-xs me-3" style={{ color: '#6C41FF' }} />
 									<a href="#" className="footer-link">Planos</a>
 								</li>
 								<li className="mb-2">
-									<FontAwesomeIcon icon="fa-solid fa-chevron-right" className="fa-xs me-3" style={{ color: '#6C41FF' }} />
+									<FontAwesomeIcon icon="chevron-right" className="fa-xs me-3" style={{ color: '#6C41FF' }} />
 									<a href="#" className="footer-link">Simular</a>
 								</li>
 								<li className="mb-2">
-									<FontAwesomeIcon icon="fa-solid fa-chevron-right" className="fa-xs me-3" style={{ color: '#6C41FF' }} />
+									<FontAwesomeIcon icon="chevron-right" className="fa-xs me-3" style={{ color: '#6C41FF' }} />
 									<a href="#" className="footer-link">Perguntas frequentes</a>
 								</li>
 								<li className="mb-2">
-									<FontAwesomeIcon icon="fa-solid fa-chevron-right" className="fa-xs me-3" style={{ color: '#6C41FF' }} />
+									<FontAwesomeIcon icon="chevron-right" className="fa-xs me-3" style={{ color: '#6C41FF' }} />
 									<a href="#" className="footer-link">Fale Conosco</a>
 								</li>
 							</ul>
@@ -74,10 +74,10 @@ const Footer: React.FC = function() {
 							<div className="text-muted mt-3 mb-5">Receba as últimas notícias e atualizações</div>
 
 							<ul className="list-unstyled social justify-content-between justify-content-md-start">
-								<li className="me-3"><a className="social-link" href="#"><FontAwesomeIcon icon="fa-brands fa-facebook-f" fixedWidth size="lg" /></a></li>
-								<li className="me-3"><a className="social-link" href="#"><FontAwesomeIcon icon="fa-brands fa-twitter" fixedWidth size="lg" /></a></li>
-								<li className="me-3"><a className="social-link" href="#"><FontAwesomeIcon icon="fa-brands fa-instagram" fixedWidth size="lg" /></a></li>
-								<li className="me-3"><a className="social-link" href="#"><FontAwesomeIcon icon="fa-brands fa-linkedin" fixedWidth size="lg" /></a></li>
+								<li className="me-3"><a className="social-link" href="#"><FontAwesomeIcon icon="facebook-f" fixedWidth size="lg" /></a></li>
+								<li className="me-3"><a className="social-link" href="#"><FontAwesomeIcon icon="twitter" fixedWidth size="lg" /></a></li>
+								<li className="me-3"><a className="social-link" href="#"><FontAwesomeIcon icon="instagram" fixedWidth size="lg" /></a></li>
+								<li className="me-3"><a className="social-link" href="#"><FontAwesomeIcon icon="linkedin" fixedWidth size="lg" /></a></li>
 							</ul>
 						</div>
 					</div>
