@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="lib/fontawesome/css/fontawesome.css">
+	<link rel="stylesheet" href="lib/fontawesome/css/all.css">
+</head>
+<body>
+	
+	<header class="d-flex flex-column hero">
+		<nav class="navbar navbar-dark navbar-expand-lg">
+			<div class="container">
+				<div class="navbar-brand me-5">
+					<img class="navbar-logo" src="img/logo.png" alt="Telzir">
+				</div>
+
+				<button class="navbar-toggler shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+					<div class="offcanvas-header">
+						<h5 class="offcanvas-title" id="offcanvasNavbarLabel">Telzir</h5>
+						<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+					</div>
+
+					<div class="offcanvas-body">
+						<ul class="navbar-nav align-items-start justify-content-start flex-grow-1 pe-3">
+							<li class="nav-item mx-lg-4"><a href="#" class="nav-link active">Home</a></li>
+							<li class="nav-item mx-lg-4"><a href="#" class="nav-link">Planos</a></li>
+							<li class="nav-item mx-lg-4"><a href="#" class="nav-link">Simular</a></li>
+							<li class="nav-item mx-lg-4"><a href="#" class="nav-link">Perguntas Frequentes</a></li>
+						</ul>
+
+						<button type="button" class="btn mt-4 mt-lg-0 btn--style-1"><i class="fa-solid fa-phone"></i> Fale Conosco</button>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container h-100 py-5 text-white">
+			<div class="h-100 row align-items-center justify-content-center justify-content-md-between">
+				<div class="col-md-5 mb-5 text-center text-md-start">
+					<h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
+					<p class="text--style-2 my-4">Assumenda esse nulla quia recusandae aspernatur veritatis, et corrupti adipisci quidem pariatur praesentium</p>
+					<button type="button" class="btn btn-lg btn--style-2 px-4 py-2">Conheça nossos planos</button>
+				</div>
+
+				<div class="col-11 col-md-6 align-self-stretch">
+					<img src="img/abstract.png" class="header-image" alt="">
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<main>
+		<section class="container mb-4">
+			<div class="text-center mb-5">
+				<h6 class="text-uppercase text--style-1 mt-5">Planos</h6>
+				<h3 class="text-capitalize">Escolha seu plano</h3>
+
+				<p class="text-secondary mx-auto col-10 col-lg-7">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae quas itaque magnam recusandae reprehenderit omnis ipsa molestias sit officia delectus dolore nihil porro totam maiores perspiciatis, eveniet expedita dolores, provident!</p>
+			</div>
+
+			<div class="row row-cols-1 row-cols-md-3 align-items-center justify-content-center">
+				<div class="col-9 col-md-6 col-lg">
+					<div class="card mb-3 py-4 plan">
+						<div class="card-body">
+
+							<div class="bg--style-1 mx-auto px-2 py-4 text-white rounded-circle text-center mb-4" style="width: 158px; height: 158px;">
+								<h6>Até</h6>
+								<h1 class="plan-minutes" data-value="30">0</h1>
+								<h6>Minutos</h6>
+							</div>
+
+							<h4 class="text-center">FaleMais</h4>
+
+							<div class="d-flex mb-3 flex-row justify-content-center align-items-center">
+								<h2 class="text--style-1">R$ 22.22</h2>
+								<span>/mês</span>
+							</div>
+
+							<ul class="ps-0 mb-4 list-group align-items-center justify-content-center text-truncate">
+								<li class="list-group-item">
+									<i class="fa-solid fa-circle-check fa-fw fa-lg text--style-1"></i></span>
+									Lorem ipsum dolor sit amet
+								</li>
+
+								<li class="list-group-item">
+									<i class="fa-solid fa-circle-check fa-fw fa-lg text--style-1"></i></span>
+									Lorem ipsum dolor sit amet
+								</li>
+
+								<li class="list-group-item">
+									<i class="fa-solid fa-circle-check fa-fw fa-lg text--style-1"></i></span>
+									Lorem ipsum dolor sit amet
+								</li>
+
+								<li class="list-group-item">
+									<i class="fa-solid fa-circle-check fa-fw fa-lg text--style-1"></i></span>
+									Lorem ipsum dolor sit amet
+								</li>
+							</ul>
+
+							<div class="text-center d-grid d-md-block">
+								<button type="button" class="btn px-5 py-3 btn--style-2">Simulação</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-9 col-md-6 col-lg">
+					<div class="card bg-light mb-3  py-4 plan">
+						<div class="card-body">
+
+							<div class="bg--style-1 mx-auto px-2 py-4 text-white rounded-circle text-center mb-4" style="width: 158px; height: 158px;">
+								<h6>Até</h6>
+								<h1 class="plan-minutes" data-value="60">0</h1>
+								<h6>Minutos</h6>
+							</div>
+
+							<h4 class="text-center">FaleMais</h4>
+
+							<div class="d-flex mb-3 flex-row justify-content-center align-items-center">
+								<h2 class="text--style-1">R$ 22.22</h2>
+								<span>/mês</span>
+							</div>
+
+							<ul class="ps-0 mb-4 list-group align-items-center justify-content-center text-truncate">
+								<li class="list-group-item">
+									<i class="fa-solid fa-circle-check fa-fw fa-lg text--style-1"></i></span>
+									Lorem ipsum dolor sit amet
+								</li>
+
+								<li class="list-group-item">
+									<i class="fa-solid fa-circle-check fa-fw fa-lg text--style-1"></i></span>
+									Lorem ipsum dolor sit amet
+								</li>
+
+								<li class="list-group-item">
+									<i class="fa-solid fa-circle-check fa-fw fa-lg text--style-1"></i></span>
+									Lorem ipsum dolor sit amet
+								</li>
+
+								<li class="list-group-item">
+									<i class="fa-solid fa-circle-check fa-fw fa-lg text--style-1"></i></span>
+									Lorem ipsum dolor sit amet
+								</li>
+							</ul>
+
+							<div class="text-center d-grid d-md-block">
+								<button type="button" class="btn px-5 py-3 btn--style-2">Simulação</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-9 col-md-6 col-lg">
+					<div class="card bg-light mb-3  py-4 plan">
+						<div class="card-body">
+
+							<div class="bg--style-1 mx-auto px-2 py-4 text-white rounded-circle text-center mb-4" style="width: 158px; height: 158px;">
+								<h6>Até</h6>
+								<h1 class="plan-minutes" data-value="120">0</h1>
+								<h6>Minutos</h6>
+							</div>
+
+							<h4 class="text-center">FaleMais</h4>
+
+							<div class="d-flex mb-3 flex-row justify-content-center align-items-center">
+								<h2 class="text--style-1">R$ 22.22</h2>
+								<span>/mês</span>
+							</div>
+
+							<ul class="ps-0 mb-4 list-group align-items-center justify-content-center text-truncate">
+								<li class="list-group-item">
+									<i class="fa-solid fa-circle-check fa-fw fa-lg text--style-1"></i></span>
+									Lorem ipsum dolor sit amet
+								</li>
+
+								<li class="list-group-item">
+									<i class="fa-solid fa-circle-check fa-fw fa-lg text--style-1"></i></span>
+									Lorem ipsum dolor sit amet
+								</li>
+
+								<li class="list-group-item">
+									<i class="fa-solid fa-circle-check fa-fw fa-lg text--style-1"></i></span>
+									Lorem ipsum dolor sit amet
+								</li>
+
+								<li class="list-group-item">
+									<i class="fa-solid fa-circle-check fa-fw fa-lg text--style-1"></i></span>
+									Lorem ipsum dolor sit amet
+								</li>
+							</ul>
+
+							<div class="text-center d-grid d-md-block">
+								<button type="button" class="btn px-5 py-3 btn--style-2">Simulação</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</section>
+
+		<section class="container-fluid bg--style-2 text-white">
+			<div class="container py-5">
+				<div class="row flex-column align-items-center">
+					<div class="col-lg-7 mb-4">
+						<div class="text-center w-7">
+							<h2>Calcular Gastos</h2>
+							<p class="text--style-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti atque culpa, praesentium enim. Quas sapiente nulla eum vitae ad, molestiae, doloremque repudiandae numquam ipsa suscipit ex vero fuga est. At.</p>
+						</div>
+					</div>
+
+					<div class="col-lg-7">
+						<form action="" class="p-5" style="background-color: #301F4D;">
+							<div class="row">
+
+								<div class="mb-4">
+									<label for="" class="form-label">Plano</label>
+
+									<select class="form-select form--style-1" name="" id="">
+										<option value="" disabled selected>Selecione um plano</option>
+										<option value="">FaleMais 30</option>
+										<option value="">FaleMais 60</option>
+										<option value="">FaleMais 120</option>
+									</select>
+								</div>
+
+								<div class="col-6">
+									<label class="form-label" for="">Origem</label>
+
+									<select class="form-select form--style-1" name="" id="">
+										<option value="">11 - São Paulo, SP</option>
+										<option value="">16 - São Paulo, SP</option>
+										<option value="">17 - São Paulo, SP</option>
+										<option value="">18 - São Paulo, SP</option>
+									</select>
+								</div>
+
+								<div class="col-6 mb-4">
+									<label class="form-label" for="">Destino</label>
+
+									<select class="form-select form--style-1" name="" id="">
+										<option value="">11 - São Paulo, SP</option>
+										<option value="">16 - São Paulo, SP</option>
+										<option value="">17 - São Paulo, SP</option>
+										<option value="">18 - São Paulo, SP</option>
+									</select>
+								</div>
+
+								<div class="col-6">
+									<label class="form-label" for="">Duração da ligação</label>
+									<div class="input-group">
+										<input type="number" class="form-control form--style-1">
+										<div class="input-group-text form--style-1">Minutos</div>
+									</div>
+								</div>
+
+								<div class="col-6 align-items-end">
+									<label class="form-label" for="">Resultado</label>
+
+									<div class="input-group">
+										<input type="text" class="form-control form--style-1" readonly>
+										<span class="input-group-text form--style-1">
+											R$
+										</span>
+									</div>
+								</div>
+
+								<div class="d-grid mt-4">
+									<button type="submit" class="btn px-4 py-2 btn--style-2">Calcular</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="container py-5 mb-4">
+			<div class="row align-items-center justify-content-center">
+				<div class="col-10">
+					<h3>Perguntas Frequentes</h3>
+					<p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique accusamus doloribus, cum provident facilis, iure! Aut odio in harum, iste placeat minus dolores eum ullam veniam, ipsam. Officiis, alias, voluptatibus.</p>
+
+					<div class="accordion" id="faqList">
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">Lorem ipsum dolor sit amet, consectetur adipisicing elit</button>
+							</h2>
+
+							<div id="faqCollapse1" class="accordion-collapse collapse show" data-bs-parent="#faqList">
+								<div class="accordion-body">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, sequi optio enim! Illum adipisci officia, harum voluptatum aliquam fugit corporis eum, nesciunt nostrum beatae excepturi officiis error reiciendis, quas quibusdam.
+								</div>
+							</div>
+						</div>
+
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">Lorem ipsum dolor sit amet, consectetur adipisicing elit</button>
+							</h2>
+
+							<div id="faqCollapse2" class="accordion-collapse collapse" data-bs-parent="#faqList">
+								<div class="accordion-body">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, sequi optio enim! Illum adipisci officia, harum voluptatum aliquam fugit corporis eum, nesciunt nostrum beatae excepturi officiis error reiciendis, quas quibusdam.
+								</div>
+							</div>
+						</div>
+
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">Lorem ipsum dolor sit amet, consectetur adipisicing elit</button>
+							</h2>
+
+							<div id="faqCollapse3" class="accordion-collapse collapse" data-bs-parent="#faqList">
+								<div class="accordion-body">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, sequi optio enim! Illum adipisci officia, harum voluptatum aliquam fugit corporis eum, nesciunt nostrum beatae excepturi officiis error reiciendis, quas quibusdam.
+								</div>
+							</div>
+						</div>
+
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">Lorem ipsum dolor sit amet, consectetur adipisicing elit</button>
+							</h2>
+
+							<div id="faqCollapse4" class="accordion-collapse collapse" data-bs-parent="#faqList">
+								<div class="accordion-body">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, sequi optio enim! Illum adipisci officia, harum voluptatum aliquam fugit corporis eum, nesciunt nostrum beatae excepturi officiis error reiciendis, quas quibusdam.
+								</div>
+							</div>
+						</div>
+
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">Lorem ipsum dolor sit amet, consectetur adipisicing elit</button>
+							</h2>
+
+							<div id="faqCollapse4" class="accordion-collapse collapse" data-bs-parent="#faqList">
+								<div class="accordion-body">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, sequi optio enim! Illum adipisci officia, harum voluptatum aliquam fugit corporis eum, nesciunt nostrum beatae excepturi officiis error reiciendis, quas quibusdam.
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				
+			</div>
+		</section>
+
+		<section class="container-fluid bg--style-2 text-white">
+			<div class="container py-5">
+				<div class="row align-items-center justify-content-center justify-content-lg-between">
+					<div class="col-lg-6">
+						<div class="text-center text-lg-start">
+							<h2>Fale Conosco</h2>
+							<p class="text--style-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti atque culpa, praesentium enim. Quas sapiente nulla eum vitae ad, molestiae, doloremque repudiandae numquam ipsa suscipit ex vero fuga est. At.</p>
+						</div>
+
+						<ul class="list-unstyled d-flex flex-column align-items-stretch align-items-md-start mt-5">
+							<li class="row align-items-center justify-content-start mb-5">
+								<div class="col-auto">
+									<span class="p-3 bg--style-1 rounded">
+										<i class="fa-solid fa-location-dot fa-fw fa-lg bg--style-2"></i>
+									</span>
+								</div>
+
+								<div class="col-auto">
+									<h6>Endereço</h6>
+									<div class="text--style-2">123 Lorem ipsum dolor</div>
+									<div class="text--style-2">Consectetur Adipisicing Elit</div>
+								</div>
+							</li>
+
+							<li class="row align-items-center justify-content-start mb-5">
+								<div class="col-auto">
+									<span class="p-3 bg--style-1 rounded">
+										<i class="fa-solid fa-envelope fa-fw fa-lg bg--style-2"></i>
+									</span>
+								</div>
+
+								<div class="col-auto">
+									<h6>E-mail</h6>
+									<span class="text--style-2">suporte@email.com</span>
+								</div>
+							</li>
+
+							<li class="row align-items-center justify-content-start mb-5">
+								<div class="col-auto">
+									<span class="p-3 bg--style-1 rounded">
+										<i class="fa-solid fa-phone fa-fw fa-lg bg--style-2"></i>
+									</span>
+								</div>
+
+								<div class="col-auto">
+									<h6>Telefone</h6>
+									<div class="text--style-2">(99) 9999 9999</div>
+									<div class="text--style-2">segunda a sexta, 14h ás 16h</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<div class="col-lg-6">
+						<form action="" class="p-5" style="background-color: #301F4D;">
+							<div class="row">
+
+								<div class="mb-4">
+									<label for="" class="form-label">Seu nome</label>
+									<input type="text" class="form-control form--style-1" name="" id="">
+								</div>
+
+								<div class="mb-4">
+									<label for="" class="form-label">Número de telefone</label>
+									<input type="tel" class="form-control form--style-1" name="" id="">
+								</div>
+
+								<div class="mb-4">
+									<label for="" class="form-label">Endereço de e-mail</label>
+									<input type="email" class="form-control form--style-1" name="" id="">
+								</div>
+
+								<div class="mb-4">
+									<label class="form-label" for="">Assunto</label>
+
+									<select class="form-select form--style-1" name="" id="">
+										<option value="" selected disabled>Selecione o assunto</option>
+										<option value="">Serviços</option>
+										<option value="">Problemas Técnicos</option>
+										<option value="">Outro</option>
+									</select>
+								</div>
+
+								<div class="mb-4">
+									<label for="" class="form-label">Mensagem</label>
+
+									<textarea class="form-control form--style-1" name="" id="" rows="7" style="resize:none;"></textarea>
+								</div>
+
+								<div class="d-grid mt-1">
+									<button type="submit" class="btn px-4 py-2 btn--style-2">Enviar</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="container pb-2">
+			<div class="text-center mb-5">
+				<h6 class="text-uppercase text--style-1 mt-5">Nosso Blog</h6>
+				<h3 class="text-capitalize">Últimas notícias e artigos</h3>
+				<p class="text-secondary mx-auto col-10 col-lg-7">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae quas itaque magnam recusandae reprehenderit</p>
+				
+				<div class="row align-items-center justify-content-center justify-content-lg-between mt-5">
+					<div class="col-8 col-md-6 col-lg-4 mb-4">
+						<div class="card bg-light">
+							<div class="overflow-hidden">
+								<img src="img/blog-img1.jpg" class="card-img-top article-image" alt="">
+							</div>
+							<div class="card-body">
+								<h5 class="card-title">Lorem ipsum dolor</h5>
+								<p class="card-text text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam ex excepturi ducimus? Omnis exercitationem illum fugit perferendis possimus laboriosam ipsa tempore facilis repudiandae ipsam. Sit repudiandae tempore dicta cumque vero.</p>
+								<a href="#" class="article-link">Saber mais <i class="fa-solid fa-angles-right" style="vertical-align: middle;"></i></a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-8 col-md-6 col-lg-4 mb-4">
+						<div class="card bg-light">
+							<div class="overflow-hidden">
+								<img src="img/blog-img1.jpg" class="card-img-top article-image" alt="">
+							</div>
+							<div class="card-body">
+								<h5 class="card-title">Lorem ipsum dolor</h5>
+								<p class="card-text text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam ex excepturi ducimus? Omnis exercitationem illum fugit perferendis possimus laboriosam ipsa tempore facilis repudiandae ipsam. Sit repudiandae tempore dicta cumque vero.</p>
+								<a href="#" class="article-link">Saber mais <i class="fa-solid fa-angles-right" style="vertical-align: middle;"></i></a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-8 col-md-6 col-lg-4 mb-4">
+						<div class="card bg-light">
+							<div class="overflow-hidden">
+								<img src="img/blog-img1.jpg" class="card-img-top article-image" alt="">
+							</div>
+							<div class="card-body">
+								<h5 class="card-title">Lorem ipsum dolor</h5>
+								<p class="card-text text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam ex excepturi ducimus? Omnis exercitationem illum fugit perferendis possimus laboriosam ipsa tempore facilis repudiandae ipsam. Sit repudiandae tempore dicta cumque vero.</p>
+								<a href="#" class="article-link">Saber mais <i class="fa-solid fa-angles-right" style="vertical-align: middle;"></i></a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="text-light">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<div style="height: 50px; background-color: #1f2330;"></div>
+				</div>
+			</div>
+		</div>
+
+		<div style="background-color: #181c28;">
+			<div class="container">
+				<div class="row justify-content-center justify-content-sm-between justify-content-md-between align-items-start">
+					<div class="col-lg-4">
+						<div class="pb-5 mb-3 mb-lg-0 px-5" style="background-color: #1f2330;">
+							<img src="img/logo.png" alt="Telzir" class="footer-logo">
+
+							<div class="text-muted my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis ipsam accusantium reprehenderit numquam.</div>
+
+							<ul class="list-unstyled">
+								<li class="mb-2 text-capitalize"><i class="fa-solid fa-location-dot icon--1" style="width: 25px;"></i> Lorem ipsum, 123 - adipisicing</li>
+								<li class="mb-2 "><i class="fa-solid fa-envelope icon--1" style="width: 25px;"></i> suporte@email.com</li>
+								<li><i class="fa-solid fa-phone icon--1" style="width: 25px;"></i> (99) 9999 9999</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-auto pt-40 pt-lg-80">
+						<h5>Navegação</h5>
+						<ul class="list-unstyled">
+							<li class="mb-2">
+								<i class="fa-solid fa-chevron-right fa-xs me-3" style="color: #6C41FF;"></i>
+								<a href="#" class="footer-link">Home</a>
+							</li>
+							<li class="mb-2">
+								<i class="fa-solid fa-chevron-right fa-xs me-3" style="color: #6C41FF;"></i>
+								<a href="#" class="footer-link">Planos</a>
+							</li>
+							<li class="mb-2">
+								<i class="fa-solid fa-chevron-right fa-xs me-3" style="color: #6C41FF;"></i>
+								<a href="#" class="footer-link">Simular</a>
+							</li>
+							<li class="mb-2">
+								<i class="fa-solid fa-chevron-right fa-xs me-3" style="color: #6C41FF;"></i>
+								<a href="#" class="footer-link">Perguntas frequentes</a>
+							</li>
+							<li class="mb-2">
+								<i class="fa-solid fa-chevron-right fa-xs me-3" style="color: #6C41FF;"></i>
+								<a href="#" class="footer-link">Fale Conosco</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="col-auto pt-40 pt-lg-80">
+						<h5>Newsletter</h5>
+						<div class="input-group bg-white p-2 rounded">
+							<input type="email" class="form-control form-control-sm shadow-none border-0" placeholder="Seu endereço de e-email">
+							<button type="button" class="btn btn-secondary">Inscrever-se</button>
+						</div>
+						<div class="text-muted mt-3 mb-5">Receba as últimas notícias e atualizações</div>
+
+						<ul class="list-unstyled social justify-content-between justify-content-md-start">
+							<li class="me-3"><a class="social-link" href="#"><i class="fa-brands fa-facebook-f fa-fw fa-lg"></i></a></li>
+							<li class="me-3"><a class="social-link" href="#"><i class="fa-brands fa-twitter fa-fw fa-lg"></i></a></li>
+							<li class="me-3"><a class="social-link" href="#"><i class="fa-brands fa-instagram fa-fw fa-lg"></i></a></li>
+							<li class="me-3"><a class="social-link" href="#"><i class="fa-brands fa-linkedin fa-fw fa-lg"></i></a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="mt-5" style="border-top: 1px solid #A0AABA2B;"></div>
+
+				<div class="py-4 row align-items-center justify-content-between" >
+
+					<div class="col-auto">
+						<div class="text-muted small">
+							Desenvolvido por <a class="footer-link" target="_blank" href="https://www.linkedin.com/in/bruno-alexander-0b6816207/">Bruno Alexander</a>
+						</div>
+					</div>
+
+					<div class="col-auto">
+						<div class="text-muted small">
+							&copy; 2022 Telzir. Todos os direitos reservados.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	
+	<script src="js/jquery.js"></script>
+	<script src="js/script.js"></script>
+	<script src="lib/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+</html>
