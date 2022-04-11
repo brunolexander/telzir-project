@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import IPlan from '../interfaces/IPlan'
 
-const Plan = (props: IPlan): JSX.Element => (
+const Plan = ({ price, time, key_features }: IPlan): JSX.Element => (
 
     <div className="col-9 col-md-6 col-lg">
         <div className="card mb-3 py-4 plan">
@@ -9,37 +9,28 @@ const Plan = (props: IPlan): JSX.Element => (
 
                 <div className="bg--style-1 mx-auto px-2 py-4 text-white rounded-circle text-center mb-4" style={{ width: '158px', height: '158px' }}>
                     <h6>Até</h6>
-                    <h1 className="plan-minutes" data-value="30">0</h1>
+                    <h1 className="plan-minutes" data-value={ time }>{ time }</h1>
                     <h6>Minutos</h6>
                 </div>
 
                 <h4 className="text-center">FaleMais</h4>
 
                 <div className="d-flex mb-3 flex-row justify-content-center align-items-center">
-                    <h2 className="text--style-1">R$ 22.22</h2>
+                    <h2 className="text--style-1">R$ { price }</h2>
                     <span>/mês</span>
                 </div>
 
                 <ul className="ps-0 mb-4 list-group align-items-center justify-content-center text-truncate">
-                    <li className="list-group-item">
-                        <FontAwesomeIcon icon="circle-check" size="lg" className="text--style-1" fixedWidth />
-                        Lorem ipsum dolor sit amet
-                    </li>
+                    
+                    { key_features.map((feature, index) => {
+                        return (
+                            <li key={ index } className="list-group-item">
+                                <FontAwesomeIcon icon="circle-check" size="lg" className="text--style-1" fixedWidth />
+                                { feature }
+                            </li>
+                        )
+                    })}
 
-                    <li className="list-group-item">
-                        <FontAwesomeIcon icon="circle-check" size="lg" className="text--style-1" fixedWidth />
-                        Lorem ipsum dolor sit amet
-                    </li>
-
-                    <li className="list-group-item">
-                        <FontAwesomeIcon icon="circle-check" size="lg" className="text--style-1" fixedWidth />
-                        Lorem ipsum dolor sit amet
-                    </li>
-
-                    <li className="list-group-item">
-                        <FontAwesomeIcon icon="circle-check" size="lg" className="text--style-1" fixedWidth />
-                        Lorem ipsum dolor sit amet
-                    </li>
                 </ul>
 
                 <div className="text-center d-grid d-md-block">
