@@ -5,9 +5,9 @@ import { IContactFormData } from '../interfaces/IContactForm'
 
 const Contact = (): JSX.Element => {
 
-	const { register, setError, clearErrors, handleSubmit, formState: { errors } } = useForm<IContactFormData>()
+	const { register, handleSubmit, formState: { errors } } = useForm<IContactFormData>()
 	
-	const onSubmit = (data: IContactFormData): void => {
+	const onSubmit = (): void => {
 		// TODO: send message
 	}
 
@@ -113,7 +113,7 @@ const Contact = (): JSX.Element => {
 									<Form.Label>Assunto</Form.Label>
 
 									<Form.Select isInvalid={ errors.subject ? true : false } defaultValue='' className="form--style-1" { ...register('subject', { required: true }) }>
-										<option value='' selected disabled>Selecione o assunto</option>
+										<option value='' disabled>Selecione o assunto</option>
 										<option className='text-dark' value='seviços'>Serviços</option>
 										<option className='text-dark' value='problemas'>Problemas Técnicos</option>
 										<option className='text-dark' value='outro'>Outro</option>
