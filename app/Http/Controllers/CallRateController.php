@@ -18,6 +18,6 @@ class CallRateController extends Controller
     public function show(int $sourcePhoneCodeId, int $destinationPhoneId)
     {
         return new ResourcesCallRate(CallRate::where('source_id', $sourcePhoneCodeId)
-            ->where('destination_id', $destinationPhoneId)->get());
+            ->where('destination_id', $destinationPhoneId)->firstOrFail());
     }
 }

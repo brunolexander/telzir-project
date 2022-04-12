@@ -1,17 +1,29 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from 'react'
 import IPlan from "../interfaces/IPlan"
 import IPhoneCode from "../interfaces/IPhoneCode"
 import ICallRate from "../interfaces/ICallRate"
+import { IPricingCalculatorFormData, IPricingCalculatorFormInputs } from "../interfaces/IPricingCalculatorForm"
 import axios, { AxiosResponse } from 'axios'
+import { useForm } from 'react-hook-form'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Form, InputGroup, Row } from 'react-bootstrap'
 
 const PricingCalculator = (): JSX.Element => {
 
 	const [plans, setPlans] = useState<IPlan[]>([])
 	const [phoneCodes, setPhoneCodes] = useState<IPhoneCode[]>([])
 	const [callRates, setCallRates] = useState<ICallRate[]>([])
-	const [isCalculating, setIsCalculating] = useState<Boolean>(false)
-	const [destinationPhoneId, setDestinationPhoneId] = useState<number>()
-	const [sourcePhoneId, setSourcePhoneId] = useState<number>()
+	const { register, handleSubmit, formState: { errors } } = useForm<IPricingCalculatorFormData>()
+	const [isCalculating, setIsCalculating] = useState<boolean>(false)
+	const [costWithoutPlan, setCostWithoutPlan] = useState<number>()
+	const [costWithPlan, setCostWithPlan] = useState<number>()
+
+	const [playAnimation, setPlayAnimation] = useState<IPricingCalculatorFormInputs>({
+		planTime: false,
+		destinationPhoneId: false,
+		sourcePhoneId: false,
+		callDuration: false
+	})
 
 	useEffect(() => {
 
@@ -32,29 +44,44 @@ const PricingCalculator = (): JSX.Element => {
 
 	}, [])
 
-	const handleCalculateCost = useCallback(async (event: React.FormEvent) => {
+	const handleRequiredInputs = (): void => {
+		setPlayAnimation({
+			planTime: errors.planTime ? true : false,
+			destinationPhoneId: errors.destinationPhoneId ? true : false,
+			sourcePhoneId: errors.sourcePhoneId ? true : false,
+			callDuration: errors.callDuration ? true : false
+		})
+	}
+
+	const handleCalculateCost = useCallback(async (data: IPricingCalculatorFormData): Promise<void> => {
+	
+		setIsCalculating(true)
+
+		//event.preventDefault()
+
+		try {
+			const response = await axios.get(
+				import.meta.env.VITE_API_ENDPOINT + `/call-rates/${data.sourcePhoneId}/${data.destinationPhoneId}`
+			)
+		} catch (error: any) {
+			if (error.response.status === 404) {
+				console.log('not found')
+			} else {
+				console.error(error)
+			}
+		}
+
+		/*const callDuration: number = data.callDuration || 0
+		const planTime: number = data.planTime || 0
+		const actualCallDuration: number = Math.max(callDuration - planTime, 0)
+		const callRate: ICallRate = response.data.data[0]
 		
-		event.preventDefault()
-
-		const response = await axios.get(import.meta.env.VITE_API_ENDPOINT + `/call-rates/${sourcePhoneId}/${destinationPhoneId}`)
-
-		//console.log(response.data.data)
-
-		console.log('calculate cost')
+		setCostWithPlan(actualCallDuration * callRate.cost_per_minute)
+		setCostWithoutPlan(callDuration * callRate.cost_per_minute)*/
+		
+		setIsCalculating(false)
 
 	}, [isCalculating])
-
-	const handleChangeSourcePhoneId = (event: React.ChangeEvent<HTMLSelectElement>): void => {
-
-		setSourcePhoneId(Number(event.target.value))
-
-		console.log(sourcePhoneId)
-	}
-
-	const handleChangeDestinationPhoneId = (event: React.ChangeEvent<HTMLSelectElement>): void => {
-		console.log('handleChangeDestinationPhoneId')
-		setDestinationPhoneId(Number(event.target.value))
-	}
 
 	return (
 		<section className="container-fluid bg--style-2 text-white">
@@ -68,72 +95,136 @@ const PricingCalculator = (): JSX.Element => {
 					</div>
 
 					<div className="col-lg-7">
-						<form onSubmit={ handleCalculateCost } className="p-5" style={{ backgroundColor: '#301F4D' }} >
-							<div className="row">
+						<Form noValidate onSubmit={ handleSubmit(handleCalculateCost, handleRequiredInputs) } className="p-5" style={{ backgroundColor: '#301F4D' }} >
+							<Row>
+								<Form.Group controlId='plan' className="mb-4">
+									<Form.Label>Plano</Form.Label>
 
-								<div className="mb-4">
-									<label htmlFor="plan" className="form-label">Plano</label>
-
-									<select className="form-select form--style-1" name="plan" id="plan">
-										<option key={0}>Selecione um plano</option>
+									<Form.Select 
+										isInvalid={ errors.planTime ? true : false } 
+										onAnimationEnd={() => setPlayAnimation({ ...playAnimation, planTime: false })} 
+										defaultValue='' 
+										{ ...register('planTime', { required: true }) } 
+										className={ `form--style-1 ${ playAnimation.planTime && 'shake' }`}
+									>
+										
+										<option key={0} value='' disabled>Selecione um plano</option>
 
 										{ plans.map((plan) => {
 											return (
-												<option key={plan.id} value={ plan.time }>FaleMais { plan.time }</option>
+												<option className='text-black' key={plan.id} value={ plan.time }>FaleMais { plan.time }</option>
 											)
 										})}
 										
-									</select>
-								</div>
+									</Form.Select>
 
-								<div className="col-6">
-									<label className="form-label" htmlFor="source">Origem</label>
+									<Form.Control.Feedback type="invalid">
+										Selecione um plano
+									</Form.Control.Feedback>
+								</Form.Group>
 
-									<select onChange={ handleChangeSourcePhoneId } className="form-select form--style-1" name="source" id="source">
+								<Form.Group controlId='sourcePhoneId' className="col-6">
+									<Form.Label>Origem</Form.Label>
+
+									<Form.Select 
+										isInvalid={ errors.sourcePhoneId ? true : false }
+										onAnimationEnd={() => setPlayAnimation({ ...playAnimation, sourcePhoneId: false })} 
+										defaultValue='' 
+										{ ...register('sourcePhoneId', { required: true }) } 
+										className={ `form--style-1 ${ playAnimation.sourcePhoneId && 'shake' }` }
+									>
+										<option key={0} value='' disabled>Selecione a origem</option>
+
 										{phoneCodes.map((phoneCode) => {
 											return (
-												<option key={phoneCode.id} value={phoneCode.id}>11 - { phoneCode.state }</option>
+												<option className='text-black' key={phoneCode.id} value={phoneCode.id}>{ phoneCode.code } - { phoneCode.state }</option>
 											)
 										})}
-									</select>
-								</div>
+									</Form.Select>
 
-								<div className="col-6 mb-4">
-									<label className="form-label" htmlFor="destination">Destino</label>
+									<Form.Control.Feedback type="invalid">
+										Selecione a origem
+									</Form.Control.Feedback>
+								</Form.Group>
 
-									<select onChange={ handleChangeDestinationPhoneId } className="form-select form--style-1" name="destination" id="destination">
+								<Form.Group controlId='destinationPhoneId' className="col-6 mb-4">
+									<Form.Label>Destino</Form.Label>
+
+									<Form.Select 
+										isInvalid={ errors.destinationPhoneId ? true : false }
+										onAnimationEnd={() => setPlayAnimation({ ...playAnimation, destinationPhoneId: false })} 
+										defaultValue='' 
+										{ ...register('destinationPhoneId', { required: true }) } 
+										className={ `form--style-1 ${ playAnimation.destinationPhoneId && 'shake' }` }
+									>
+										<option key={0} value='' disabled>Selecione o destino</option>
+
 										{phoneCodes.map((phoneCode) => {
 											return (
-												<option key={phoneCode.id} value={phoneCode.id}>11 - { phoneCode.state }</option>
+												<option className='text-black' key={phoneCode.id} value={phoneCode.id}>{ phoneCode.code } - { phoneCode.state }</option>
 											)
 										})}
-									</select>
-								</div>
+									</Form.Select>
 
-								<div className="col-6">
-									<label className="form-label" htmlFor="duration">Duração da ligação</label>
-									<div className="input-group">
-										<input type="number" min={0} className="form-control form--style-1" id="duration" />
-										<div className="input-group-text form--style-1">Minutos</div>
-									</div>
-								</div>
+									<Form.Control.Feedback type="invalid">
+										Selecione o destino
+									</Form.Control.Feedback>
+								</Form.Group>
 
-								<div className="col-6 align-items-end">
-									<label className="form-label" htmlFor="result">Resultado</label>
+								<Form.Group controlId='callDuration' className="mb-4">
+									<Form.Label>Duração da ligação</Form.Label>
+									<InputGroup hasValidation>
+										<Form.Control 
+											isInvalid={ errors.callDuration ? true : false }
+											onAnimationEnd={() => setPlayAnimation({ ...playAnimation, callDuration: false })} 
+											type="number" 
+											{ ...register('callDuration', { required: true, min: 0 }) } 
+											min={0} 
+											className={ `form--style-1 ${ playAnimation.callDuration && 'shake' }` } 
+										/>
+										<InputGroup.Text className="form--style-1">Minutos</InputGroup.Text>
+									
+										<Form.Control.Feedback type="invalid">
+											Informe um valor válido
+							            </Form.Control.Feedback>
+									</InputGroup>
+								</Form.Group>
 
-									<div className="input-group">
-										<input type="text" className="form-control form--style-1" readOnly id="result" />
-										<span className="input-group-text form--style-1">
-											R$
-										</span>
-									</div>
-								</div>
+								<Form.Group controlId='costWithPlan' className="col-md-6">
+									<Form.Label>Custo com plano</Form.Label>
+
+									<InputGroup>
+										<Form.Control type="text" value={ costWithPlan } className="form-control form--style-1" readOnly />
+										<InputGroup.Text className="form--style-1">
+											{ isCalculating ? (
+												<FontAwesomeIcon icon='spinner' spin size='lg' />
+											) : ( 
+												'R$'
+											)}
+										</InputGroup.Text>
+									</InputGroup>
+								</Form.Group>
+
+								<Form.Group controlId='costWithoutPlan' className="col-md-6">
+									<Form.Label>Custo sem plano</Form.Label>
+
+									<InputGroup>
+										<Form.Control type="text" value={ costWithoutPlan } className="form--style-1" readOnly />
+										<InputGroup.Text className="form--style-1">
+											{ isCalculating ? (
+												<FontAwesomeIcon icon='spinner' spin size='lg' />
+											) : ( 
+												'R$'
+											)}
+										</InputGroup.Text>
+									</InputGroup>
+								</Form.Group>
 
 								<div className="d-grid mt-4">
 									<button type="submit" className="btn px-4 py-2 btn--style-2">Calcular</button>
 								</div>
-							</div>
-						</form>
+							</Row>
+						</Form>
 					</div>
 				</div>
 			</div>
