@@ -211,7 +211,7 @@ const PricingCalculator = (): JSX.Element => {
 									<Form.Label>Custo com plano</Form.Label>
 
 									<InputGroup>
-										<Form.Control type="text" value={ costWithPlan } className="form-control form--style-1" readOnly />
+										<Form.Control type="text" value={ costWithPlan } className="font-italic form--style-1" readOnly />
 										<InputGroup.Text className="form--style-1">
 											{ isCalculating ? (
 												<FontAwesomeIcon icon='spinner' spin size='lg' />
@@ -226,7 +226,7 @@ const PricingCalculator = (): JSX.Element => {
 									<Form.Label>Custo sem plano</Form.Label>
 
 									<InputGroup>
-										<Form.Control type="text" value={ costWithoutPlan } className="form--style-1" readOnly />
+										<Form.Control type="text" value={ costWithoutPlan } className="font-italic form--style-1" readOnly />
 										<InputGroup.Text className="form--style-1">
 											{ isCalculating ? (
 												<FontAwesomeIcon icon='spinner' spin size='lg' />
