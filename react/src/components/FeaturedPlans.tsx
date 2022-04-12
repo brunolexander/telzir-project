@@ -9,16 +9,10 @@ const FeaturedPlans = (): JSX.Element => {
 
 	useEffect(() => {
 
-		const fetchFeaturedPlans = async (): Promise<void> => {
-			try {
-				const response: AxiosResponse = await axios.get(import.meta.env.VITE_API_ENDPOINT + '/plans')
-				
-				setPlans(response.data.data)
-
-				//setPlans(response.data)
-			} catch (error) {
-				console.error(error)
-			}
+		const fetchFeaturedPlans = (): void => {
+			axios.get(import.meta.env.VITE_API_ENDPOINT + '/plans')
+				.then((response) => setPlans(response.data.data))
+				.catch((error) => console.error(error))
 		}
 
 		fetchFeaturedPlans()

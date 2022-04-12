@@ -5,6 +5,7 @@ import './fontawesome'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import FeaturedPlans from './components/FeaturedPlans'
+import PricingCalculator from './components/PricingCalculator'
 
 const App = (): JSX.Element => (
 
@@ -12,6 +13,7 @@ const App = (): JSX.Element => (
 		<Header/>
 		<main>
 			<FeaturedPlans/>
+			<PricingCalculator/>
 		</main>
 		<Footer/>
 	</div>

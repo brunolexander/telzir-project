@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\CallRateController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\PhoneCodeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +23,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::controller(PlanController::class)->group(function() {
     Route::get('/plans', 'index');
+});
+
+Route::controller(PhoneCodeController::class)->group(function() {
+    Route::get('/phone-codes', 'index');
+});
+
+Route::controller(CallRateController::class)->group(function() {
+    Route::get('/call-rates/{source}/{destination}', 'show')
+        ->whereNumber('source')
+        ->whereNumber('destination');
 });
