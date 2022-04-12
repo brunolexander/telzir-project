@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
 import IPlan from "../interfaces/IPlan"
 import IPhoneCode from "../interfaces/IPhoneCode"
-import ICallRate from "../interfaces/ICallRate"
 import { IPricingCalculatorFormData, IPricingCalculatorFormInputs } from "../interfaces/IPricingCalculatorForm"
-import axios, { AxiosResponse } from 'axios'
+import axios from 'axios'
 import { FieldError, useForm } from 'react-hook-form'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Form, InputGroup, Row } from 'react-bootstrap'
@@ -12,7 +11,6 @@ const PricingCalculator = (): JSX.Element => {
 
 	const [plans, setPlans] = useState<IPlan[]>([])
 	const [phoneCodes, setPhoneCodes] = useState<IPhoneCode[]>([])
-	const [callRates, setCallRates] = useState<ICallRate[]>([])
 	const { register, setError, clearErrors, handleSubmit, formState: { errors } } = useForm<IPricingCalculatorFormData>()
 	const [isCalculating, setIsCalculating] = useState<boolean>(false)
 	const [costWithoutPlan, setCostWithoutPlan] = useState<number>(0)
@@ -123,7 +121,7 @@ const PricingCalculator = (): JSX.Element => {
 
 										{ plans.map((plan) => {
 											return (
-												<option className='text-black' key={plan.id} value={ plan.id }>FaleMais { plan.time }</option>
+												<option className='text-dark' key={plan.id} value={ plan.id }>FaleMais { plan.time }</option>
 											)
 										})}
 										
@@ -148,7 +146,7 @@ const PricingCalculator = (): JSX.Element => {
 
 										{phoneCodes.map((phoneCode) => {
 											return (
-												<option className='text-black' key={phoneCode.id} value={phoneCode.id}>{ phoneCode.code } - { phoneCode.state }</option>
+												<option className='text-dark' key={phoneCode.id} value={phoneCode.id}>{ phoneCode.code } - { phoneCode.state }</option>
 											)
 										})}
 									</Form.Select>
@@ -173,7 +171,7 @@ const PricingCalculator = (): JSX.Element => {
 
 										{phoneCodes.map((phoneCode) => {
 											return (
-												<option className='text-black' key={phoneCode.id} value={phoneCode.id}>{ phoneCode.code } - { phoneCode.state }</option>
+												<option className='text-dark' key={phoneCode.id} value={phoneCode.id}>{ phoneCode.code } - { phoneCode.state }</option>
 											)
 										})}
 									</Form.Select>
