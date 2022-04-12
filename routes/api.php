@@ -29,8 +29,4 @@ Route::controller(PhoneCodeController::class)->group(function() {
     Route::get('/phone-codes', 'index');
 });
 
-Route::controller(CallRateController::class)->group(function() {
-    Route::get('/call-rates/{source}/{destination}', 'show')
-        ->whereNumber('source')
-        ->whereNumber('destination');
-});
+Route::get('/call-rates/calculate-call-cost/{plan}/{source}/{destination}/{duration}', [CallRateController::class, 'calculateCallCost']);

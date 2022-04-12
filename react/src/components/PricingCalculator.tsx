@@ -4,7 +4,7 @@ import IPhoneCode from "../interfaces/IPhoneCode"
 import ICallRate from "../interfaces/ICallRate"
 import { IPricingCalculatorFormData, IPricingCalculatorFormInputs } from "../interfaces/IPricingCalculatorForm"
 import axios, { AxiosResponse } from 'axios'
-import { useForm } from 'react-hook-form'
+import { FieldError, useForm } from 'react-hook-form'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Form, InputGroup, Row } from 'react-bootstrap'
 
@@ -13,13 +13,13 @@ const PricingCalculator = (): JSX.Element => {
 	const [plans, setPlans] = useState<IPlan[]>([])
 	const [phoneCodes, setPhoneCodes] = useState<IPhoneCode[]>([])
 	const [callRates, setCallRates] = useState<ICallRate[]>([])
-	const { register, handleSubmit, formState: { errors } } = useForm<IPricingCalculatorFormData>()
+	const { register, setError, clearErrors, handleSubmit, formState: { errors } } = useForm<IPricingCalculatorFormData>()
 	const [isCalculating, setIsCalculating] = useState<boolean>(false)
-	const [costWithoutPlan, setCostWithoutPlan] = useState<number>()
-	const [costWithPlan, setCostWithPlan] = useState<number>()
+	const [costWithoutPlan, setCostWithoutPlan] = useState<number>(0)
+	const [costWithPlan, setCostWithPlan] = useState<number>(0)
 
 	const [playAnimation, setPlayAnimation] = useState<IPricingCalculatorFormInputs>({
-		planTime: false,
+		planId: false,
 		destinationPhoneId: false,
 		sourcePhoneId: false,
 		callDuration: false
@@ -44,9 +44,14 @@ const PricingCalculator = (): JSX.Element => {
 
 	}, [])
 
-	const handleRequiredInputs = (): void => {
+	const handleInvalidForm = (errors: {
+		planId?: FieldError | undefined,
+		destinationPhoneId?: FieldError | undefined,
+		sourcePhoneId?: FieldError | undefined,
+		callDuration?: FieldError | undefined
+	}): void => {
 		setPlayAnimation({
-			planTime: errors.planTime ? true : false,
+			planId: errors.planId ? true : false,
 			destinationPhoneId: errors.destinationPhoneId ? true : false,
 			sourcePhoneId: errors.sourcePhoneId ? true : false,
 			callDuration: errors.callDuration ? true : false
@@ -57,27 +62,33 @@ const PricingCalculator = (): JSX.Element => {
 	
 		setIsCalculating(true)
 
-		//event.preventDefault()
-
 		try {
-			const response = await axios.get(
-				import.meta.env.VITE_API_ENDPOINT + `/call-rates/${data.sourcePhoneId}/${data.destinationPhoneId}`
-			)
-		} catch (error: any) {
-			if (error.response.status === 404) {
-				console.log('not found')
-			} else {
-				console.error(error)
-			}
-		}
 
-		/*const callDuration: number = data.callDuration || 0
-		const planTime: number = data.planTime || 0
-		const actualCallDuration: number = Math.max(callDuration - planTime, 0)
-		const callRate: ICallRate = response.data.data[0]
-		
-		setCostWithPlan(actualCallDuration * callRate.cost_per_minute)
-		setCostWithoutPlan(callDuration * callRate.cost_per_minute)*/
+			const response = await axios.get(
+				import.meta.env.VITE_API_ENDPOINT + `/call-rates/calculate-call-cost/${data.planId}/${data.sourcePhoneId}/${data.destinationPhoneId}/${data.callDuration}`
+			)
+
+			setCostWithPlan(
+				response.data.costWithPlan.toFixed(2)
+			)
+
+			setCostWithoutPlan(
+				response.data.costWithoutPlan.toFixed(2)
+			)
+
+		} catch (error: any) {
+
+			console.log(error)
+
+			setError('destinationPhoneId', { type: 'not found', message: 'some error message'})
+
+			setPlayAnimation({
+				planId: true,
+				destinationPhoneId: true,
+				sourcePhoneId: true,
+				callDuration: true
+			})
+		}
 		
 		setIsCalculating(false)
 
@@ -95,24 +106,24 @@ const PricingCalculator = (): JSX.Element => {
 					</div>
 
 					<div className="col-lg-7">
-						<Form noValidate onSubmit={ handleSubmit(handleCalculateCost, handleRequiredInputs) } className="p-5" style={{ backgroundColor: '#301F4D' }} >
+						<Form noValidate onSubmit={ handleSubmit(handleCalculateCost, handleInvalidForm) } className="p-5" style={{ backgroundColor: '#301F4D' }} >
 							<Row>
 								<Form.Group controlId='plan' className="mb-4">
 									<Form.Label>Plano</Form.Label>
 
 									<Form.Select 
-										isInvalid={ errors.planTime ? true : false } 
-										onAnimationEnd={() => setPlayAnimation({ ...playAnimation, planTime: false })} 
+										isInvalid={ errors.planId ? true : false } 
+										onAnimationEnd={() => setPlayAnimation({ ...playAnimation, planId: false })} 
 										defaultValue='' 
-										{ ...register('planTime', { required: true }) } 
-										className={ `form--style-1 ${ playAnimation.planTime && 'shake' }`}
+										{ ...register('planId', { required: true }) } 
+										className={ `form--style-1 ${ playAnimation.planId && 'shake' }`}
 									>
 										
 										<option key={0} value='' disabled>Selecione um plano</option>
 
 										{ plans.map((plan) => {
 											return (
-												<option className='text-black' key={plan.id} value={ plan.time }>FaleMais { plan.time }</option>
+												<option className='text-black' key={plan.id} value={ plan.id }>FaleMais { plan.time }</option>
 											)
 										})}
 										
@@ -155,6 +166,7 @@ const PricingCalculator = (): JSX.Element => {
 										onAnimationEnd={() => setPlayAnimation({ ...playAnimation, destinationPhoneId: false })} 
 										defaultValue='' 
 										{ ...register('destinationPhoneId', { required: true }) } 
+										onChange={() => clearErrors('destinationPhoneId')}
 										className={ `form--style-1 ${ playAnimation.destinationPhoneId && 'shake' }` }
 									>
 										<option key={0} value='' disabled>Selecione o destino</option>
@@ -167,7 +179,12 @@ const PricingCalculator = (): JSX.Element => {
 									</Form.Select>
 
 									<Form.Control.Feedback type="invalid">
-										Selecione o destino
+										{ errors.destinationPhoneId && errors.destinationPhoneId.type === 'not found' ? (
+												'Destino inválido, selecione outra opção'
+											) : (
+												'Selecione o destino'
+											)
+										}
 									</Form.Control.Feedback>
 								</Form.Group>
 

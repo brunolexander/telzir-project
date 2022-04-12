@@ -1,12 +1,12 @@
 interface IPricingCalculatorFormData {
-	planTime: number;
+	planId: number;
 	destinationPhoneId: number;
 	sourcePhoneId: number;
 	callDuration: number;
 }
 
 interface IPricingCalculatorFormInputs {
-	planTime: boolean;
+	planId: boolean;
 	destinationPhoneId: boolean;
 	sourcePhoneId: boolean;
 	callDuration: boolean;
