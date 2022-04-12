@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PhoneCodeController;
+use App\Http\Controllers\QuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,7 @@ Route::controller(PhoneCodeController::class)->group(function() {
 });
 
 Route::get('/call-rates/calculate-call-cost/{plan}/{source}/{destination}/{duration}', [CallRateController::class, 'calculateCallCost']);
+
+Route::controller(QuestionController::class)->group(function() {
+    Route::get('/questions', 'index');
+});

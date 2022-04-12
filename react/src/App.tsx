@@ -6,6 +6,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import FeaturedPlans from './components/FeaturedPlans'
 import PricingCalculator from './components/PricingCalculator'
+import FAQ from './components/FAQ'
 
 const App = (): JSX.Element => (
 
@@ -14,6 +15,7 @@ const App = (): JSX.Element => (
 		<main>
 			<FeaturedPlans/>
 			<PricingCalculator/>
+			<FAQ/>
 		</main>
 		<Footer/>
 	</div>
