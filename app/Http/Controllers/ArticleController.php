@@ -5,17 +5,52 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Http\Resources\ArticleCollection;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Validation\Rule;
+use Symfony\Component\HttpFoundation\Response;
 
 class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new ArticleCollection(Article::all());
+        $table = Article::tableName();
+        $columns = Schema::getColumnListing($table);
+
+        $query = $request->query();
+
+        $validator = validator($query, [
+            'limit' => 'int|min:0',
+            'order' => 'in:asc,desc',
+            'sort' => Rule::in($columns)
+        ]);
+
+        if ($validator->fails())
+        {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], Response::HTTP_BAD_REQUEST);
+        }
+       
+        $validated = $validator->validated();
+
+        $order = $validated['order'] ?? 'asc';
+        $column = $validated['sort'] ?? 'id';
+        $limit = $validated['limit'] ?? null;
+
+        $articles =  Article::orderBy($column, $order);
+
+        if ($limit)
+        {
+           return new ArticleCollection($articles->paginate($limit));
+        }
+        
+        return new ArticleCollection($articles->get());
     }
 
     /**

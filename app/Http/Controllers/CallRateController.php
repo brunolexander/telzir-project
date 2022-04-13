@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Plan;
 use App\Models\CallRate;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CallRateController extends Controller
 {
@@ -20,11 +21,37 @@ class CallRateController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function calculateCallCost(Request $request, int $plan, int $source, int $destination, int $duration)
-    {        
-        $plan = Plan::findOrFail($plan);
+    {
+        $errors = [];
+        $plan = Plan::find($plan);
 
-        $callRate = CallRate::where('destination_id', $destination)
-            ->where('source_id', $source)->firstOrFail();
+        if (!$plan)
+        {
+            $errors[] = ['plan' => 'The provided plan id is invalid.'];
+        }
+
+        $sourcePhoneExists = CallRate::where('source_id', $source)->exists();
+
+        if (!$sourcePhoneExists)
+        {
+            $errors[] = ['source' => 'The provided source id is invalid.'];
+        }
+
+        $callRate = CallRate::where('source_id', $source)
+            ->where('destination_id', $destination)
+            ->first();
+
+        if (!$callRate)
+        {
+            $errors[] = ['destination' => 'The provided destination id is invalid.'];
+        }
+
+        if (!empty($errors))
+        {
+            return response()->json([
+                'errors' => $errors
+            ], Response::HTTP_NOT_FOUND);
+        }
 
         $duration = max(0, $duration);
 
