@@ -1,12 +1,56 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { useForm } from 'react-hook-form'
-import { IContactFormData } from '../interfaces/IContactForm'
+import { IContactFormData, IContactFormInputs } from '../interfaces/IContactForm'
 
 const Contact = (): JSX.Element => {
 
 	const { register, handleSubmit, formState: { errors } } = useForm<IContactFormData>()
-	
+
+	const [playAnimation, setPlayAnimation] = useState<IContactFormInputs>({
+		name: false,
+		phone: false,
+		email: false,
+		subject: false,
+		message: false
+	})
+
+	useEffect(() => {
+		setPlayAnimation(playAnimation => ({
+		 ...playAnimation, email: true 
+		}))
+
+	}, [errors.email])
+
+	useEffect(() => {
+		setPlayAnimation(playAnimation => ({
+		 ...playAnimation, name: true 
+		}))
+
+	}, [errors.name])
+
+	useEffect(() => {
+		setPlayAnimation(playAnimation => ({
+		 ...playAnimation, phone: true 
+		}))
+
+	}, [errors.phone])
+
+	useEffect(() => {
+		setPlayAnimation(playAnimation => ({
+		 ...playAnimation, message: true 
+		}))
+
+	}, [errors.message])
+
+	useEffect(() => {
+		setPlayAnimation(playAnimation => ({
+		 ...playAnimation, subject: true 
+		}))
+
+	}, [errors.subject])
+
 	const onSubmit = (): void => {
 		// TODO: send message
 	}
@@ -71,8 +115,14 @@ const Contact = (): JSX.Element => {
 
 								<Form.Group className="mb-4">
 									<Form.Label className="form-label">Seu nome</Form.Label>
-									<Form.Control isInvalid={ errors.name ? true : false } type="text" className="form--style-1" { ...register('name', { required: true }) } />
-									
+									<Form.Control 
+										isInvalid={ errors.name ? true : false } 
+										type="text" 
+										{ ...register('name', { required: true }) } 
+										className={ `form--style-1 ${ playAnimation.name && 'shake' }`}
+										onAnimationEnd={() => setPlayAnimation({ ...playAnimation, name: false })}
+									/>
+
 									<Form.Control.Feedback type="invalid">
 										Informe seu nome
 									</Form.Control.Feedback>
@@ -80,7 +130,13 @@ const Contact = (): JSX.Element => {
 
 								<Form.Group className="mb-4">
 									<Form.Label className="form-label">Número de telefone</Form.Label>
-									<Form.Control isInvalid={ errors.phone ? true : false } type="tel" className="form--style-1" { ...register('phone', { required: true }) } />
+									<Form.Control 
+										isInvalid={ errors.phone ? true : false } 
+										type="tel" 
+										{ ...register('phone', { required: true }) } 
+										className={ `form--style-1 ${ playAnimation.phone && 'shake' }`}
+										onAnimationEnd={() => setPlayAnimation({ ...playAnimation, phone: false })}
+									 />
 
 									<Form.Control.Feedback type="invalid">
 										Informe seu telefone
@@ -89,13 +145,20 @@ const Contact = (): JSX.Element => {
 
 								<Form.Group className="mb-4">
 									<Form.Label className="form-label">Endereço de e-mail</Form.Label>
-									<Form.Control isInvalid={ errors.email ? true : false } type="email" className="form--style-1" { ...register('email', {
-										required: true,
-										pattern: { 
-											value: /^\S+@\S+\.\S+$/,
-											message: 'Digite um e-mail válido'
-										} 
-									}) } />
+
+									<Form.Control 
+										isInvalid={ errors.email ? true : false } 
+										type="email" 
+										{ ...register('email', {
+											required: true,
+											pattern: { 
+												value: /^\S+@\S+\.\S+$/,
+												message: 'Digite um e-mail válido'
+											} 
+										}) }
+										onAnimationEnd={() => setPlayAnimation({ ...playAnimation, email: false })} 
+										className={ `form--style-1 ${ playAnimation.email && 'shake' }`} 
+									/>
 
 								{ errors.email &&
 									<Form.Control.Feedback type="invalid">
@@ -112,7 +175,13 @@ const Contact = (): JSX.Element => {
 								<Form.Group className="mb-4">
 									<Form.Label>Assunto</Form.Label>
 
-									<Form.Select isInvalid={ errors.subject ? true : false } defaultValue='' className="form--style-1" { ...register('subject', { required: true }) }>
+									<Form.Select 
+										isInvalid={ errors.subject ? true : false } 
+										onAnimationEnd={() => setPlayAnimation({ ...playAnimation, subject: false })} 
+										defaultValue='' 
+										{ ...register('subject', { required: true }) } 
+										className={ `form--style-1 ${ playAnimation.subject && 'shake' }`}
+									>
 										<option value='' disabled>Selecione o assunto</option>
 										<option className='text-dark' value='seviços'>Serviços</option>
 										<option className='text-dark' value='problemas'>Problemas Técnicos</option>
@@ -126,7 +195,15 @@ const Contact = (): JSX.Element => {
 
 								<Form.Group className="mb-4">
 									<Form.Label className="form-label">Mensagem</Form.Label>
-									<Form.Control isInvalid={ errors.message ? true : false } as='textarea' className="form-control form--style-1" rows={ 7 } style={{ resize:'none' }} { ...register('message', { required: true }) } />
+									<Form.Control 
+										isInvalid={ errors.message ? true : false } 
+										as='textarea' 
+										rows={ 7 } 
+										style={{ resize:'none' }} 
+										{ ...register('message', { required: true }) }  
+										className={ `form--style-1 ${ playAnimation.message && 'shake' }`} 
+										onAnimationEnd={() => setPlayAnimation({ ...playAnimation, message: false })}
+									/>
 								
 									<Form.Control.Feedback type="invalid">
 										Digite a mensagem

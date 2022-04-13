@@ -3,7 +3,7 @@ import IPlan from "../interfaces/IPlan"
 import IPhoneCode from "../interfaces/IPhoneCode"
 import { IPricingCalculatorFormData, IPricingCalculatorFormInputs } from "../interfaces/IPricingCalculatorForm"
 import axios from 'axios'
-import { FieldError, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Form, InputGroup, Row } from 'react-bootstrap'
 
@@ -42,19 +42,33 @@ const PricingCalculator = (): JSX.Element => {
 
 	}, [])
 
-	const handleInvalidForm = (errors: {
-		planId?: FieldError | undefined,
-		destinationPhoneId?: FieldError | undefined,
-		sourcePhoneId?: FieldError | undefined,
-		callDuration?: FieldError | undefined
-	}): void => {
-		setPlayAnimation({
-			planId: errors.planId ? true : false,
-			destinationPhoneId: errors.destinationPhoneId ? true : false,
-			sourcePhoneId: errors.sourcePhoneId ? true : false,
-			callDuration: errors.callDuration ? true : false
-		})
-	}
+	useEffect(() => {
+		setPlayAnimation(playAnimation => ({
+		 ...playAnimation, planId: true 
+		}))
+
+	}, [errors.planId])
+
+	useEffect(() => {
+		setPlayAnimation(playAnimation => ({
+		 ...playAnimation, destinationPhoneId: true 
+		}))
+
+	}, [errors.destinationPhoneId])
+
+	useEffect(() => {
+		setPlayAnimation(playAnimation => ({
+		 ...playAnimation, sourcePhoneId: true 
+		}))
+
+	}, [errors.sourcePhoneId])
+
+	useEffect(() => {
+		setPlayAnimation(playAnimation => ({
+		 ...playAnimation, callDuration: true 
+		}))
+
+	}, [errors.callDuration])
 
 	const handleCalculateCost = useCallback(async (data: IPricingCalculatorFormData): Promise<void> => {
 	
@@ -104,7 +118,7 @@ const PricingCalculator = (): JSX.Element => {
 					</div>
 
 					<div className="col-lg-7">
-						<Form noValidate onSubmit={ handleSubmit(handleCalculateCost, handleInvalidForm) } className="p-5" style={{ backgroundColor: '#301F4D' }} >
+						<Form noValidate onSubmit={ handleSubmit(handleCalculateCost) } className="p-5" style={{ backgroundColor: '#301F4D' }} >
 							<Row>
 								<Form.Group controlId='plan' className="mb-4">
 									<Form.Label>Plano</Form.Label>

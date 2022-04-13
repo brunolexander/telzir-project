@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CallRateController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,4 +35,8 @@ Route::get('/call-rates/calculate-call-cost/{plan}/{source}/{destination}/{durat
 
 Route::controller(QuestionController::class)->group(function() {
     Route::get('/questions', 'index');
+});
+
+Route::controller(ArticleController::class)->group(function() {
+    Route::get('/articles', 'index');
 });

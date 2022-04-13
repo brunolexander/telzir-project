@@ -8,6 +8,7 @@ import FeaturedPlans from './components/FeaturedPlans'
 import PricingCalculator from './components/PricingCalculator'
 import FAQ from './components/FAQ'
 import Contact from './components/Contact'
+import LatestNews from './components/LatestNews'
 
 const App = (): JSX.Element => (
 
@@ -18,6 +19,7 @@ const App = (): JSX.Element => (
 			<PricingCalculator/>
 			<FAQ/>
 			<Contact/>
+			<LatestNews/>
 		</main>
 		<Footer/>
 	</div>
