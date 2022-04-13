@@ -10,7 +10,7 @@ const LatestNews = (): JSX.Element => {
 	useEffect(() => {
 
 		const fetchArticles = (): void => {
-			axios.get(import.meta.env.VITE_API_ENDPOINT + '/articles')
+			axios.get(import.meta.env.VITE_API_ENDPOINT + '/articles?limit=3&sort=created_at&order=desc')
 				.then((response) => setArticles(response.data.data))
 				.catch((error) => console.error(error))
 		}
