@@ -1,0 +1,48 @@
+version: "3.9"
+services:
+
+  # PHP/Apache service
+  web:
+    build:
+      args: 
+        user: app
+        uid: 1500
+      context: .
+    container_name: app
+    depends_on:
+      - db
+    ports:
+      - "8000:80"
+    restart: unless-stopped
+    volumes:
+      - .:/var/www/app
+
+  # UI service
+  ui:
+    build: ./react
+    container_name: ui
+    restart: unless-stopped
+    ports:
+      - "3000:4173"
+    depends_on:
+      - web
+    volumes:
+      - ./react:/var/www/app/react
+      - /var/www/app/react/node_modules
+
+  # Database service
+  db:
+    image: mysql:8.0.28-debian
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:

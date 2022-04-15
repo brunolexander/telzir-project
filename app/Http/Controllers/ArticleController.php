@@ -13,7 +13,15 @@ class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * 
+     * Available query parameters:
+     * integer limit    Limit the amount of results, return all elements if not specified.
+     * string sort      A column of the model to sort by
+     * string order     Sorting order, can be either asc or desc
+     * 
+     * In case of invalid parameter value, a 404 response is returned along with
+     * a json body containing the error description.
+     * 
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */

@@ -7,7 +7,7 @@ use App\Models\CallRate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CallRateController extends Controller
+class CalculatorController extends Controller
 {
     /**
      * Calculate the cost of a call.
@@ -23,18 +23,19 @@ class CallRateController extends Controller
     public function calculateCallCost(Request $request, int $plan, int $source, int $destination, int $duration)
     {
         $errors = [];
+
         $plan = Plan::find($plan);
 
         if (!$plan)
         {
-            $errors[] = ['plan' => 'The provided plan id is invalid.'];
+            $errors['plan'] = 'The provided plan id is invalid.';
         }
 
         $sourcePhoneExists = CallRate::where('source_id', $source)->exists();
 
         if (!$sourcePhoneExists)
         {
-            $errors[] = ['source' => 'The provided source id is invalid.'];
+            $errors['source'] = 'The provided source id is invalid.';
         }
 
         $callRate = CallRate::where('source_id', $source)
@@ -43,7 +44,7 @@ class CallRateController extends Controller
 
         if (!$callRate)
         {
-            $errors[] = ['destination' => 'The provided destination id is invalid.'];
+            $errors['destination'] = 'The provided destination id is invalid.';
         }
 
         if (!empty($errors))

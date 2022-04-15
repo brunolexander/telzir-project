@@ -77,7 +77,7 @@ const PricingCalculator = (): JSX.Element => {
 		try {
 
 			const response = await axios.get(
-				import.meta.env.VITE_API_ENDPOINT + `/call-rates/calculate-call-cost/${data.planId}/${data.sourcePhoneId}/${data.destinationPhoneId}/${data.callDuration}`
+				import.meta.env.VITE_API_ENDPOINT + `/calculator/call-cost/${data.planId}/${data.sourcePhoneId}/${data.destinationPhoneId}/${data.callDuration}`
 			)
 
 			setCostWithPlan(
@@ -90,9 +90,17 @@ const PricingCalculator = (): JSX.Element => {
 
 		} catch (error: any) {
 
-			console.log(error)
-
-			setError('destinationPhoneId', { type: 'not found', message: 'some error message'})
+			console.log(error.response.data.errors)
+			if (error.response.data.errors.plan) {
+				setError('planId', { type: 'not found', message: 'Plano inválido, selecione outra opção'})
+			} else if (error.response.data.errors.source) {
+				setError('sourcePhoneId', { type: 'not found', message: 'Origem inválida, selecione outra opção'})
+			} else if (error.response.data.errors.destination) {
+				setError('destinationPhoneId', { type: 'not found', message: 'Destino inválido, selecione outra opção'})
+			} else {
+				// Request failed for an unknown reason
+				// TODO: display an error to the user
+			}
 
 			setPlayAnimation({
 				planId: true,
@@ -141,12 +149,17 @@ const PricingCalculator = (): JSX.Element => {
 										
 									</Form.Select>
 
-									<Form.Control.Feedback type="invalid">
-										Selecione um plano
-									</Form.Control.Feedback>
+									{ errors.planId && <Form.Control.Feedback type="invalid">
+										{ errors.planId.type === 'not found' ? (
+												errors.planId.message
+											) : (
+												'Selecione um plano'
+											)
+										}
+									</Form.Control.Feedback> }
 								</Form.Group>
 
-								<Form.Group controlId='sourcePhoneId' className="col-6">
+								<Form.Group controlId='sourcePhoneId' className="col-md-6 mb-4">
 									<Form.Label>Origem</Form.Label>
 
 									<Form.Select 
@@ -165,12 +178,17 @@ const PricingCalculator = (): JSX.Element => {
 										})}
 									</Form.Select>
 
-									<Form.Control.Feedback type="invalid">
-										Selecione a origem
-									</Form.Control.Feedback>
+									{ errors.sourcePhoneId && <Form.Control.Feedback type="invalid">
+										{ errors.sourcePhoneId.type === 'not found' ? (
+												errors.sourcePhoneId.message
+											) : (
+												'Selecione a origem'
+											)
+										}
+									</Form.Control.Feedback> }
 								</Form.Group>
 
-								<Form.Group controlId='destinationPhoneId' className="col-6 mb-4">
+								<Form.Group controlId='destinationPhoneId' className="col-md-6 mb-4">
 									<Form.Label>Destino</Form.Label>
 
 									<Form.Select 
@@ -190,14 +208,14 @@ const PricingCalculator = (): JSX.Element => {
 										})}
 									</Form.Select>
 
-									<Form.Control.Feedback type="invalid">
-										{ errors.destinationPhoneId && errors.destinationPhoneId.type === 'not found' ? (
-												'Destino inválido, selecione outra opção'
+									{ errors.destinationPhoneId && <Form.Control.Feedback type="invalid">
+										{ errors.destinationPhoneId.type === 'not found' ? (
+												errors.destinationPhoneId.message
 											) : (
 												'Selecione o destino'
 											)
 										}
-									</Form.Control.Feedback>
+									</Form.Control.Feedback> }
 								</Form.Group>
 
 								<Form.Group controlId='callDuration' className="mb-4">

@@ -9,20 +9,24 @@ import PricingCalculator from './components/PricingCalculator'
 import FAQ from './components/FAQ'
 import Contact from './components/Contact'
 import LatestNews from './components/LatestNews'
+import { useEffect } from 'react'
+import axios from 'axios'
 
-const App = (): JSX.Element => (
+const App = (): JSX.Element => {
 
-	<div className="App">
-		<Header/>
-		<main>
-			<FeaturedPlans/>
-			<PricingCalculator/>
-			<FAQ/>
-			<Contact/>
-			<LatestNews/>
-		</main>
-		<Footer/>
-	</div>
-)
+	return (
+		<div className="App">
+			<Header/>
+			<main>
+				<FeaturedPlans/>
+				<PricingCalculator/>
+				<FAQ/>
+				<Contact/>
+				<LatestNews/>
+			</main>
+			<Footer/>
+		</div>
+	)
+}
 
 export default App
