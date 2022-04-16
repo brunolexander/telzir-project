@@ -11,7 +11,7 @@ interface test {
     b: number;
     c: number;
 }
-const Plan = ({ price, time, key_features }: IPlan): JSX.Element => {
+const Plan = ({ price, time, key_features, onClick }: IPlan): JSX.Element => {
 
     const [timeRef, { entry }] = useIntersectionObserver()
     const isTimeVisible = entry && entry.isIntersecting 
@@ -46,7 +46,7 @@ const Plan = ({ price, time, key_features }: IPlan): JSX.Element => {
                         { key_features.map((feature, index) => {
                             return (
                                 <li key={ index } className="list-group-item">
-                                    <FontAwesomeIcon icon="circle-check" size="lg" className="text--style-1" fixedWidth />
+                                    <FontAwesomeIcon icon="circle-check" size="lg" className="text--style-1 me-1" fixedWidth />
                                     { feature }
                                 </li>
                             )
@@ -55,7 +55,7 @@ const Plan = ({ price, time, key_features }: IPlan): JSX.Element => {
                     </ul>
 
                     <div className="text-center d-grid d-md-block">
-                        <button type="button" className="btn px-5 py-3 btn--style-2">Simulação</button>
+                        <button type="button" onClick={() => { onClick && onClick() }} className="btn px-5 py-3 btn--style-2">Simulação</button>
                     </div>
 
                 </div>

@@ -20,9 +20,7 @@ const App = (): JSX.Element => {
 	const latestNewsRef = useRef<HTMLDivElement>(null)
 	const homeRef = useRef<HTMLDivElement>(null)
 
-	const handleClickHome = (): void => {
-		console.log("handleClickHome")
-		
+	const handleClickHome = (): void => {		
 		if (homeRef.current) {
 			homeRef.current.scrollIntoView()
 		}
@@ -35,6 +33,12 @@ const App = (): JSX.Element => {
 	}
 
 	const handleClickPricingCalculator = (): void => {
+		if (pricingCalculatorRef.current) {
+			pricingCalculatorRef.current.scrollIntoView()
+		}
+	}
+
+	const handleClickPlan = (): void => {
 		if (pricingCalculatorRef.current) {
 			pricingCalculatorRef.current.scrollIntoView()
 		}
@@ -73,7 +77,7 @@ const App = (): JSX.Element => {
 
 			<main>
 				<div ref={ featuredPlansRef }>
-					<FeaturedPlans/>
+					<FeaturedPlans onClickPlan={ handleClickPlan }/>
 				</div>
 
 				<div ref={ pricingCalculatorRef }>

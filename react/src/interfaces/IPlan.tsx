@@ -3,5 +3,5 @@ export default interface IPlan {
 	price: number;
 	time: number;
 	key_features: string[];
-	tax?:number;
+	onClick?: Function;
 }

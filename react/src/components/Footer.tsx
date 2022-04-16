@@ -7,7 +7,6 @@ const Footer = ({
     onClickPricingCalculator, 
     onClickFaq, 
     onClickContact, 
-    onClickLatestNews,
     onClickHome
 }: IFooter): JSX.Element => (
 

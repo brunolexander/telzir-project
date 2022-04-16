@@ -9,7 +9,6 @@ const Header = ({
 	onClickPricingCalculator, 
 	onClickFaq, 
 	onClickContact, 
-	onClickLatestNews,
 	onClickHome
 }: IHeader): JSX.Element => (
 
@@ -54,7 +53,7 @@ const Header = ({
 				<div className="col-md-5 mb-5 text-center text-md-start">
 					<h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
 					<p className="text--style-2 my-4">Assumenda esse nulla quia recusandae aspernatur veritatis, et corrupti adipisci quidem pariatur praesentium</p>
-					<button type="button" className="btn btn-lg btn--style-2 px-4 py-2">Conheça nossos planos</button>
+					<button type="button" onClick={() => { onClickFeaturedPlans && onClickFeaturedPlans() }} className="btn btn-lg btn--style-2 px-4 py-2">Conheça nossos planos</button>
 				</div>
 
 				<div className="col-11 col-md-6 align-self-stretch">

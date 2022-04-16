@@ -2,16 +2,23 @@ import { useEffect, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import IPlan from '../interfaces/IPlan';
 import Plan from './Plan'
+import IFeaturedPlans from '../interfaces/IFeaturedPlans';
+import { Spinner } from 'react-bootstrap';
+import { faLessThan } from '@fortawesome/free-solid-svg-icons';
 
-const FeaturedPlans = (): JSX.Element => {
+const FeaturedPlans = ({ onClickPlan }: IFeaturedPlans): JSX.Element => {
 
-	const [plans, setPlans] = useState<IPlan[]>([]);
+	const [plans, setPlans] = useState<IPlan[]>([])
+	const [loadingPlans, setLoadingPlans] = useState<boolean>(true)
 
 	useEffect(() => {
 
 		const fetchFeaturedPlans = (): void => {
 			axios.get(import.meta.env.VITE_API_ENDPOINT + '/plans')
-				.then((response) => setPlans(response.data.data))
+				.then((response) => {
+					setPlans(response.data.data)
+					setLoadingPlans(false)
+				})
 				.catch((error) => console.error(error))
 		}
 
@@ -29,7 +36,11 @@ const FeaturedPlans = (): JSX.Element => {
 			</div>
 
 			<div className="row row-cols-1 row-cols-md-3 align-items-center justify-content-center">
-				{ plans.map((plan) => <Plan key={ plan.id } id={ plan.id } price={ plan.price } time={ plan.time } key_features={ plan.key_features } />)}
+				{ loadingPlans ? (
+					<Spinner animation="border" variant="secondary" />
+				) : (
+					plans.map((plan) => <Plan key={ plan.id } id={ plan.id } price={ plan.price } time={ plan.time } key_features={ plan.key_features } onClick={ onClickPlan } />)
+				)}
 			</div>
 		</section>
 	);
