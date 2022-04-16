@@ -1,7 +1,15 @@
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome'
 import logo from '../assets/img/logo.png'
+import IFooter from '../interfaces/IFooter'
 
-const Footer = (): JSX.Element => (
+const Footer = ({ 
+    onClickFeaturedPlans, 
+    onClickPricingCalculator, 
+    onClickFaq, 
+    onClickContact, 
+    onClickLatestNews,
+    onClickHome
+}: IFooter): JSX.Element => (
 
     <footer className="text-light">
         <div className="container">
@@ -43,23 +51,23 @@ const Footer = (): JSX.Element => (
                         <ul className="list-unstyled">
                             <li className="mb-2">
                                 <FontAwesomeIcon icon="chevron-right" className="fa-xs me-3" style={{ color: '#6C41FF' }} />
-                                <a href="#" className="footer-link">Home</a>
+                                <button className="btn btn-link footer-link" onClick={() => { onClickHome && onClickHome() }}>Home</button>
                             </li>
                             <li className="mb-2">
                                 <FontAwesomeIcon icon="chevron-right" className="fa-xs me-3" style={{ color: '#6C41FF' }} />
-                                <a href="#" className="footer-link">Planos</a>
+                                <button className="btn btn-link footer-link" onClick={() => { onClickFeaturedPlans && onClickFeaturedPlans() }}>Planos</button>
                             </li>
                             <li className="mb-2">
                                 <FontAwesomeIcon icon="chevron-right" className="fa-xs me-3" style={{ color: '#6C41FF' }} />
-                                <a href="#" className="footer-link">Simular</a>
+                                <button className="btn btn-link footer-link" onClick={() => { onClickPricingCalculator && onClickPricingCalculator() }}>Simular</button>
                             </li>
                             <li className="mb-2">
                                 <FontAwesomeIcon icon="chevron-right" className="fa-xs me-3" style={{ color: '#6C41FF' }} />
-                                <a href="#" className="footer-link">Perguntas frequentes</a>
+                                <button className="btn btn-link footer-link" onClick={() => { onClickFaq && onClickFaq() }}>Perguntas frequentes</button>
                             </li>
                             <li className="mb-2">
                                 <FontAwesomeIcon icon="chevron-right" className="fa-xs me-3" style={{ color: '#6C41FF' }} />
-                                <a href="#" className="footer-link">Fale Conosco</a>
+                                <button className="btn btn-link footer-link" onClick={() => { onClickContact && onClickContact() }}>Fale Conosco</button>
                             </li>
                         </ul>
                     </div>

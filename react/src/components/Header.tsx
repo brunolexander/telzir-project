@@ -1,39 +1,53 @@
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome'
 import logo from '../assets/img/logo.png'
 import techPurpleBg from '../assets/img/tech-purple-bg.png'
+import IHeader from '../interfaces/IHeader'
+import { Navbar, Nav } from 'react-bootstrap'
 
-const Header = (): JSX.Element => (
+const Header = ({ 
+	onClickFeaturedPlans, 
+	onClickPricingCalculator, 
+	onClickFaq, 
+	onClickContact, 
+	onClickLatestNews,
+	onClickHome
+}: IHeader): JSX.Element => (
 
 	<header className="d-flex flex-column hero">
-		<nav className="navbar navbar-dark navbar-expand-lg">
+		<Navbar variant="dark" expand="lg">
 			<div className="container">
 				<div className="navbar-brand me-5">
 					<img className="navbar-logo" src={logo} alt="Telzir" />
 				</div>
 
-				<button className="navbar-toggler shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-					<span className="navbar-toggler-icon"></span>
-				</button>
+				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
-				<div className="offcanvas offcanvas-end" tabIndex={-1} id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-					<div className="offcanvas-header">
-						<h5 className="offcanvas-title" id="offcanvasNavbarLabel">Telzir</h5>
-						<button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
-					</div>
+				<Navbar.Collapse id="responsive-navbar-nav">
+			
+						<Nav className="px-4 px-md-0 align-items-start justify-content-start flex-grow-1 pe-3">
+							<li className="nav-item mx-lg-4">
+								<button className="btn btn-link nav-link active shadow-none" onClick={() => {onClickHome && onClickHome()}} >Home</button>
+							</li>
 
-					<div className="offcanvas-body">
-						<ul className="navbar-nav align-items-start justify-content-start flex-grow-1 pe-3">
-							<li className="nav-item mx-lg-4"><a href="#" className="nav-link active">Home</a></li>
-							<li className="nav-item mx-lg-4"><a href="#" className="nav-link">Planos</a></li>
-							<li className="nav-item mx-lg-4"><a href="#" className="nav-link">Simular</a></li>
-							<li className="nav-item mx-lg-4"><a href="#" className="nav-link">Perguntas Frequentes</a></li>
-						</ul>
+							<li className="nav-item mx-lg-4">
+								<button className="btn btn-link nav-link shadow-none" onClick={() => { onClickFeaturedPlans && onClickFeaturedPlans() }}>Planos</button>
+							</li>
 
-						<button type="button" className="btn mt-4 mt-lg-0 btn--style-1"><FontAwesomeIcon icon="phone" /> Fale Conosco</button>
-					</div>
-				</div>
+							<li className="nav-item mx-lg-4">
+								<button className="btn btn-link nav-link shadow-none" onClick={() => { onClickPricingCalculator && onClickPricingCalculator() }}>Simular</button>
+							</li>
+
+							<li className="nav-item mx-lg-4">
+								<button className="btn btn-link nav-link shadow-none" onClick={() => { onClickFaq && onClickFaq() }}>Perguntas Frequentes</button>
+							</li>
+						</Nav>
+
+						<button type="button" className="btn ms-4 ms-md-0 mt-4 mt-lg-0 btn--style-1" onClick={() => { onClickContact && onClickContact() }}>
+							<FontAwesomeIcon icon="phone" /> Fale Conosco
+						</button>
+				</Navbar.Collapse>
 			</div>
-		</nav>
+		</Navbar>
 
 		<div className="container h-100 py-5 text-white">
 			<div className="h-100 row align-items-center justify-content-center justify-content-md-between">

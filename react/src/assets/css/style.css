@@ -22,6 +22,14 @@
 	object-fit: contain;
 }
 
+.hero .nav-link.active {
+	border-bottom: 3px solid #6C41FF;
+}
+
+.hero .nav-link:hover {
+	border-bottom: 3px solid #6C41FF;
+}
+
 .icon--1 {
 	color: #6C41FF;
 	font-size: 1.1rem;
@@ -136,29 +144,10 @@
 }
 
 @media (min-width: 992px) {
-	.hero .nav-link.active {
-		border-bottom: 3px solid #6C41FF;
-	}
-
-	.hero .nav-link:hover {
-		border-bottom: 3px solid #6C41FF;
-	}
+	
 
 	.pt-lg-80 {
 		padding-top: 80px;
-	}
-}
-
-@media (max-width: 991px) {
-	.hero .nav-link {
-		color: #000 !important;
-		transition: color 0.4s ease;
-	}
-
-	.hero .nav-link:hover {
-		color: #6C41FF !important;
-		font-weight: bold;
-
 	}
 }
 
