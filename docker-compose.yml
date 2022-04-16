@@ -16,6 +16,7 @@ services:
     restart: unless-stopped
     volumes:
       - .:/var/www/app
+      - /var/www/app/vendor
 
   # UI service
   ui:

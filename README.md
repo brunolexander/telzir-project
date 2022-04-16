@@ -23,9 +23,9 @@ Please refer to [docker docs](https://docs.docker.com/get-docker/) for installat
   ```
 <br>
 
-2. With your favorite command-line interface, navigate to the project's directory
+2. Navigate to the project's directory
   ```
-  cd path/to/project
+  cd telzir-project
   ```
 <br>
 
@@ -43,6 +43,8 @@ Please refer to [docker docs](https://docs.docker.com/get-docker/) for installat
 <br>
 
 5. Access http://localhost:3000 in the web browser.
+
+You may get an ERR_EMPTY_RESPONSE error once accessing the link after building the image, this occurs when react is building the static resources. Wait for a few seconds and reload the page, no further actions are required.
 
 
 ## Dependencies
